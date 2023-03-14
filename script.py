@@ -13,16 +13,18 @@ shutil.copyfile(source_file, destination_file)
 with open('data.json') as f:
     data = json.load(f)
 
-html = ""
+html = '<div id="PYTHON_GENERATED">'
 for d in data:
     html += f"""
-    <a href={d['link']}>
         <div className="M_ShortcutCard">
-            <h1 className="A_CardName"><span className="Q_TextSelection">{d['selected']} </span> {d['text']}</h1>
-            <h2 className="A_CardKey">{d['windows']}, {d['macos']}</h2>
+            <a href={d['link']}>
+                <h1 className="A_CardName"><span className="Q_TextSelection">{d['selected']} </span> {d['text']}</h1>
+                <h2 className="A_CardKey">{d['windows']}, {d['macos']}</h2>
+            </a>
         </div>
-    </a>
     """
+html += '</div>'
+
 
 # Replace the target element with the generated HTML code in the destination file
 for line in fileinput.input(destination_file, inplace=True):
