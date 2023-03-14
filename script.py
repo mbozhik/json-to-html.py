@@ -1,4 +1,5 @@
 import json
+import fileinput
 
 with open('data.json') as f:
     data = json.load(f)
@@ -9,10 +10,13 @@ for d in data:
     <a href={d['link']}>
         <div className="M_ShortcutCard">
             <h1 className="A_CardName"><span className="Q_TextSelection">{d['selected']} </span> {d['text']}</h1>
-            <h2 className="A_CardKey">{d['windows'], d['macos']}</h2>
+            <h2 className="A_CardKey">{d['windows']}, {d['macos']}</h2>
         </div>
-        </a>
+    </a>
     """
 
-with open('build.html', 'w') as f:
-    f.write(html)
+for line in fileinput.input('shortcuts.html', inplace=True):
+    if 'id="PYTHON_REPLACE"' in line:
+        print(html)
+    else:
+        print(line, end='')
