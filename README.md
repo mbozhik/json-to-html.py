@@ -1,2 +1,4 @@
-# json-html.py
-### script to convert json data in html usign python
+# json data to html code using python
+
+### [usage example](https://github.com/HSEADC/HOTKEYS/pull/1)
+
